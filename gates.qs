@@ -4,7 +4,7 @@ namespace PauliGates{
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Canon;
 
-    // Origin state for all qubits  |𝜓⟩=𝛼|0⟩+𝛽|1⟩
+    // Origin state for all qubits  |𝜓⟩= 𝛼|0⟩ +𝛽|1⟩
     operation ApplyY () : Unit {
         Message("Running ApplyY");
         let divider = "--------------------------------------------------------------------------------------------------";
@@ -20,13 +20,13 @@ namespace PauliGates{
     }
 
     operation ApplyX () : Unit {
-        Message("Running ApplyX");
+        Message("Running ApplyX After Reset");
         let divider = "--------------------------------------------------------------------------------------------------";
         using(q = Qubit()){
             DumpMachine();
             Message(divider);
             X(q);
-            Message("Qubit in state : -𝑖𝛼|0⟩ + 𝑖𝛽|1⟩");
+            Message("Qubit in state : 𝛼|1⟩ + 𝛽|0⟩");
             DumpMachine();
             Message(divider);
             Reset(q);
@@ -34,14 +34,30 @@ namespace PauliGates{
     }
 
     operation ApplyZ () : Unit {
-        Message("Running ApplyZ");
+        Message("Running ApplyZ After Reset");
         let divider = "--------------------------------------------------------------------------------------------------";
         using(q = Qubit()){
             Z(q);
-            Message("Qubit in state : -𝑖𝛼|0⟩ + 𝑖𝛽|1⟩");
+            Message("Qubit in state : 𝛼|0⟩ - 𝛽|1⟩");
             DumpMachine();
             Message(divider);
             Reset(q);
+        }
+    }
+
+    operation SignFlipOnZero () : Unit {
+        let divider = "--------------------------------------------------------------------------------------------------";
+        using(q = Qubit()) {
+            X(q);
+            Message("Qubit in state : 𝛼|1⟩ + 𝛽|0⟩");
+            DumpMachine();
+            Message(divider);
+            Z(q);
+            Message("Qubit in state : -𝛼|1⟩ + 𝛽|0⟩");
+            DumpMachine();
+            Message(divider);
+            X(q);
+            Message("Qubit in state : -𝛼|0⟩ + 𝛽|1⟩");
         }
     }
     
@@ -62,6 +78,8 @@ namespace PauliGates{
             Reset(q);
         }
     }
+
+    
 
     operation PauliGates_Demo () : Unit {
         let divider = "--------------------------------------------------------------------------------------------------";
