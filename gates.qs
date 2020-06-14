@@ -52,29 +52,57 @@ namespace PauliGates{
             Message("Qubit in state : 𝛼|1⟩ + 𝛽|0⟩");
             DumpMachine();
             Message(divider);
+
             Z(q);
             Message("Qubit in state : -𝛼|1⟩ + 𝛽|0⟩");
             DumpMachine();
             Message(divider);
+
             X(q);
             Message("Qubit in state : -𝛼|0⟩ + 𝛽|1⟩");
+            DumpMachine();
+            Message(divider);
+
+            Reset(q);
         }
     }
     
     operation GlobalPhaseI () : Unit{
+        let divider = "--------------------------------------------------------------------------------------------------";
         using(q = Qubit()){
             Message("GlobalPhase test");
             Y(q);
-            DumpMachine();
             Message("Qubit in state : 𝑖𝛼|1⟩ − 𝑖𝛽|0⟩");
+            DumpMachine();
+            Message(divider);
 
             X(q);
-            DumpMachine();
             Message("Qubit in state : 𝑖𝛼|0⟩ - 𝑖𝛽|1");
+            DumpMachine();
+            Message(divider);
 
             Z(q);
-            DumpMachine();
             Message("Qubit in state 𝑖𝛼|0⟩ + 𝑖𝛽|1");
+            DumpMachine();
+            Message(divider);
+
+            Reset(q);
+        }
+    }
+
+    operation PrepareMinus () : Unit {
+        let divider = "--------------------------------------------------------------------------------------------------";
+        using(q = Qubit()) {
+            X(q);
+            Message("Qubit in state : 𝛼|1⟩ + 𝛽|0⟩");
+            DumpMachine();
+            Message(divider);
+
+            H(q);
+            Message("Qubit in state : 𝛼|-⟩ + 𝛽|+⟩");
+            DumpMachine();
+            Message(divider);
+
             Reset(q);
         }
     }
