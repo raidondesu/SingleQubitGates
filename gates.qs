@@ -1,4 +1,4 @@
-namespace PauliGates{
+namespace SingleQubitGates{
     
     open Microsoft.Quantum.Diagnostics;
     open Microsoft.Quantum.Intrinsic;
@@ -100,6 +100,23 @@ namespace PauliGates{
 
             H(q);
             Message("Qubit in state : 𝛼|-⟩ + 𝛽|+⟩");
+            DumpMachine();
+            Message(divider);
+
+            Reset(q);
+        }
+    }
+
+    operation ThreeFourPiPhase () : Unit {
+        let divider = "--------------------------------------------------------------------------------------------------";
+        using(q = Qubit()) {
+            I(q);
+            Message("Qubit in state : [1 , 0][0 , 1]");
+            DumpMachine();
+            Message(divider);
+
+            T(q);
+            Message("Qubit in state : [1, 0][0, e ** 3ipi/4]");
             DumpMachine();
             Message(divider);
 
