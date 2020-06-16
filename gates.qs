@@ -110,8 +110,8 @@ namespace SingleQubitGates{
     operation ThreeFourPiPhase () : Unit {
         let divider = "--------------------------------------------------------------------------------------------------";
         using(q = Qubit()) {
-            I(q);
-            Message("Qubit in state : [1 , 0][0 , 1]");
+            S(q);
+            Message("Qubit in state : [1 , 0][0 , i]");
             DumpMachine();
             Message(divider);
 
